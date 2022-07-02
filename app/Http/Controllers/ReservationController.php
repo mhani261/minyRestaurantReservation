@@ -21,12 +21,12 @@ class ReservationController extends Controller
     public function store(CreateReservation $request)
     {
         $reservation = $this->reservationService->create($request->validated());
+
         return response(new ReservationResource($reservation), 200);
     }
 
     public function getReservations()
     {
-        //todo list all Reservations time not passed
-        return ;
+        return response($this->reservationService->get(), 200);
     }
 }
