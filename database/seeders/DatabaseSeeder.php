@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Customer;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,7 +14,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(TableSeeder::class);
-        Customer::factory()->count(5)->create();
+        $this->call(CustomerSeeder::class);
         $this->call(MealSeeder::class);
     }
 }

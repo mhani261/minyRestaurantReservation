@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Table;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class TableSeeder extends Seeder
 {
@@ -14,8 +15,15 @@ class TableSeeder extends Seeder
      */
     public function run()
     {
-        Table::factory(2)->create();
-        Table::factory(2)->create(['capacity' => 4]);
-        Table::factory(2)->create(['capacity' => 10]);
+        $tables = [
+            ['capacity' => 2],
+            ['capacity' => 3],
+            ['capacity' => 5],
+            ['capacity' => 7],
+            ['capacity' => 10],
+            ['capacity' => 1]
+        ];
+
+        DB::table('tables')->insert($tables);
     }
 }

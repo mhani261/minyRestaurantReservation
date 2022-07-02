@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\Meal;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class MealSeeder extends Seeder
 {
@@ -14,6 +14,40 @@ class MealSeeder extends Seeder
      */
     public function run()
     {
-        Meal::factory()->count(20)->create();
+        $meals = [
+            [
+                'price' => 10.15,
+                'description' => "meal description",
+                'quantity_available' => 0,
+                'discount' => 10
+            ],
+            [
+                'price' => 25.99,
+                'description' => "meal description",
+                'quantity_available' => 5,
+                'discount' => 18
+            ],
+            [
+                'price' => 36.89,
+                'description' => "meal description",
+                'quantity_available' => 7,
+                'discount' => 50
+            ],
+            [
+                'price' => 151.89,
+                'description' => "meal description",
+                'quantity_available' => 5,
+                'discount' => 28
+            ],
+            [
+                'price' => 265.11,
+                'description' => "meal description",
+                'quantity_available' => 8,
+                'discount' => 46
+            ]
+        ];
+
+        DB::table('meals')->insert($meals);
+
     }
 }
