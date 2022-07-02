@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\MealController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ReservationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -35,6 +36,13 @@ Route::group(
             ['prefix' => 'meals'],
             function () {
                 Route::get('availableMeals', [MealController::class, 'getAvailableMeals']);
+            }
+        );
+
+        Route::group(
+            ['prefix' => 'orders'],
+            function () {
+                Route::post('placeOrder', [OrderController::class, 'placeOrder']);
             }
         );
     }

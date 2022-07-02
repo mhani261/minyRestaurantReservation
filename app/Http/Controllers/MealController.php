@@ -3,23 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\MealCollection;
-use App\Services\MealsService;
+use App\Services\MealService;
 
 class MealController extends Controller
 {
     /**
-     * @var MealsService
+     * @var MealService
      */
-    public $mealsService;
+    public $mealService;
 
-    public function __construct(MealsService $mealsService)
+    public function __construct(MealService $mealService)
     {
-        $this->mealsService = $mealsService;
+        $this->mealService = $mealService;
     }
 
     public function getAvailableMeals()
     {
-        $meals = $this->mealsService->getAvailableMeals();
+        $meals = $this->mealService->getAvailableMeals();
 
         return response(new MealCollection($meals), 200);
     }

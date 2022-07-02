@@ -15,4 +15,9 @@ class Meal extends Model
         'quantity_available',
         'discount'
     ];
+
+    public function getFinalPriceAttribute()
+    {
+        return $this->price - ($this->price * ($this->discount / 100));
+    }
 }

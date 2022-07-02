@@ -5,7 +5,7 @@ namespace App\Services;
 use App\Models\Meal;
 use App\Models\Reservation;
 
-class MealsService
+class MealService
 {
     public function getAvailableMeals()
     {

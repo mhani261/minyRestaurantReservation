@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Schema;
 
 class CreateOrdersTable extends Migration
@@ -21,10 +22,9 @@ class CreateOrdersTable extends Migration
             $table->foreign('table_id')->references('id')->on('tables');
             $table->foreign('reservation_id')->references('id')->on('reservations');
             $table->foreign('customer_id')->references('id')->on('customers');
-            $table->integer('waiter_id');
-            $table->decimal('total');
-            $table->decimal('paid');
-            $table->dateTime('date');
+            $table->decimal('total')->default(0);
+            $table->decimal('paid')->default(0);
+            $table->dateTime('date')->default(Carbon::now());
             $table->timestamps();
         });
     }
