@@ -52,7 +52,6 @@ class OrderService
 
     public function getTableCheckout(Table $table)
     {
-        $order = $table->lastOrder;
-        dd($order);
+        return $table->lastOrder;
     }
 }

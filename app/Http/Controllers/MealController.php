@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\MealCollection;
 use App\Services\MealService;
+use Illuminate\Http\Response as HttpResponse;
 
-class MealController extends Controller
+class MealController extends ApiController
 {
     /**
      * @var MealService
@@ -21,6 +22,8 @@ class MealController extends Controller
     {
         $meals = $this->mealService->getAvailableMeals();
 
-        return response(new MealCollection($meals), 200);
+        return $this
+            ->setStatusCode(HttpResponse::HTTP_OK)
+            ->responseWithData(new MealCollection($meals));
     }
 }

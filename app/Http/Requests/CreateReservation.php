@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Rules\CheckTableCapacity;
 use App\Rules\CheckTableTimeAvailability;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -30,7 +29,6 @@ class CreateReservation extends FormRequest
                 'required',
                 'exists:tables,id',
                 new CheckTableTimeAvailability($this->from_time, $this->to_time),
-                new CheckTableCapacity($this->guest_number)
             ],
             'customer_id' => [
                 'required',

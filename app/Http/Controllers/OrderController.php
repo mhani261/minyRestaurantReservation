@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PlaceOrderRequest;
+use App\Http\Resources\CheckoutResource;
 use App\Http\Resources\OrderResource;
 use App\Models\Table;
 use App\Services\OrderService;
+use Illuminate\Http\Response as HttpResponse;
 
-class OrderController extends Controller
+class OrderController extends ApiController
 {
     /**
      * @var OrderService
@@ -21,12 +23,18 @@ class OrderController extends Controller
 
     public function placeOrder(PlaceOrderRequest $request)
     {
-        return response(new OrderResource($this->orderService->placeOrder($request->validated())), 200);
+        return $this
+            ->setStatusCode(HttpResponse::HTTP_OK)
+            ->responseWithData(new OrderResource($this->orderService->placeOrder($request->validated())));
     }
 
     public function getCheckout(Table $table)
     {
         $this->orderService->closeOrder($table);
-        return $this->orderService->getTableCheckout($table);
+        $order = $this->orderService->getTableCheckout($table);
+
+        return $this
+            ->setStatusCode(HttpResponse::HTTP_OK)
+            ->responseWithData(new CheckoutResource($order));
     }
 }

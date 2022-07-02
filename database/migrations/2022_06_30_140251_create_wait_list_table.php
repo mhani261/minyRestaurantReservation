@@ -13,7 +13,7 @@ class CreateWaitListTable extends Migration
      */
     public function up()
     {
-        Schema::create('wait_list', function (Blueprint $table) {
+        Schema::create('wait_lists', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('table_id');
             $table->unsignedBigInteger('customer_id');
