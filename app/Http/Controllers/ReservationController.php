@@ -23,8 +23,7 @@ class ReservationController extends ApiController
     public function store(CreateReservation $request)
     {
         $tableValidation = $this->reservationService->checkTableCapacity($request->table_id, $request->guest_number);
-        if ($tableValidation)
-        {
+        if ($tableValidation) {
             $waitList = $this->reservationService->putOnWaitList($request->validated());
             return $this
                 ->setStatusCode(HttpResponse::HTTP_OK)
