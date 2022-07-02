@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PlaceOrderRequest;
 use App\Http\Resources\OrderResource;
+use App\Models\Table;
 use App\Services\OrderService;
 
 class OrderController extends Controller
@@ -23,4 +24,9 @@ class OrderController extends Controller
         return response(new OrderResource($this->orderService->placeOrder($request->validated())), 200);
     }
 
+    public function getCheckout(Table $table)
+    {
+        $this->orderService->closeOrder($table);
+        return $this->orderService->getTableCheckout($table);
+    }
 }

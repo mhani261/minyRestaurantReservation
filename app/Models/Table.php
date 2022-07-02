@@ -13,4 +13,9 @@ class Table extends Model
     {
         return $this->hasMany(Reservation::class);
     }
+
+    public function lastOrder()
+    {
+        return $this->hasOne(Order::class)->latest();
+    }
 }

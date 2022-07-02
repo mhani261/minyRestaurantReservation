@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Meal;
 use App\Models\Order;
+use App\Models\Table;
 use Illuminate\Support\Facades\DB;
 
 class OrderService
@@ -33,5 +34,25 @@ class OrderService
                 ]
             );
         }
+    }
+
+    public function closeOrder(Table $table)
+    {
+        $order = $table->lastOrder;
+        $orderTotalAmount = $order->orderItems->sum('amount_to_pay');
+        $orderTotalBeforeDiscount = $order->meals->sum('price');
+
+        $table->lastOrder->update(
+            [
+                'total' => $orderTotalBeforeDiscount,
+                'paid' => $orderTotalAmount
+            ]
+        );
+    }
+
+    public function getTableCheckout(Table $table)
+    {
+        $order = $table->lastOrder;
+        dd($order);
     }
 }

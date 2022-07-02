@@ -43,6 +43,7 @@ Route::group(
             ['prefix' => 'orders'],
             function () {
                 Route::post('placeOrder', [OrderController::class, 'placeOrder']);
+                Route::get('checkout/{table}', [OrderController::class, 'getCheckout']);
             }
         );
     }
