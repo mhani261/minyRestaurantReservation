@@ -23,5 +23,4 @@ class MealController extends Controller
 
         return response(new MealCollection($meals), 200);
     }
-
 }
