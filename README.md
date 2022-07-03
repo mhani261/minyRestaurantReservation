@@ -23,3 +23,7 @@ meals with availability number of stock, validation on available time for every 
 - **[Place Order](https://minyresturant.herokuapp.com/api/forSale/orders/placeOrder)**
 - **[Get Available Meals](https://minyresturant.herokuapp.com/api/forSale/meals/availableMeals)**
 - **[Checkout](https://minyresturant.herokuapp.com/api/forSale/orders/checkout/:table_id)**
+
+
+### Hint
+- You can check unit test that cover reservation service
